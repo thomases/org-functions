@@ -53,7 +53,6 @@
       (org-time-stamp-inactive)
       (org-evaluate-time-range)
       (org-indent-line))))
-Functions for org-mode written by me
 
 
 

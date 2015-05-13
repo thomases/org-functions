@@ -63,5 +63,15 @@
     (org-clock-in '(16))))
 
 
+;; Change task state to STARTED from TODO when clocking in
+(defun the/clock-in-to-started (kw)
+  "Switch task from TODO to STARTED when clocking in. Modified from bh/clock-in-to-started"
+  (if (and (string-equal kw "TODO")
+	   (not (string-match-p "CAPTURE-notes.org" (buffer-name))))
+      "STARTED"
+      nil))
+
+
+
 (provide 'org-functions)
 ;;; org-functions.el ends here

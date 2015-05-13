@@ -56,6 +56,12 @@
 
 
 
+(defun the/clock-select-and-clock-in ()
+  "Select a task previously associated with clocking and clock it in"
+  (interactive)
+  (org-with-point-at (org-clock-select-task)
+    (org-clock-in '(16))))
+
 
 (provide 'org-functions)
 ;;; org-functions.el ends here

@@ -72,6 +72,23 @@
       nil))
 
 
+;; remove scheduled time from tasks when switching to a waiting state
+;; 
+;; this requires that the following hook be added somewhere else in your org configuration:
+;;      (add-hook 'org-trigger-hook 'the/remove-schedule-when-waiting)
+
+(defvar the/waiting-keywords '("WAITING")
+  "List of states denoting a waiting state of a headline") 
+
+(defun the/remove-schedule-when-waiting (plist)
+  "Remove schedule when state changes to one of the stated in the/waiting-keywords"
+  (let ((type (plist-get plist :type))
+	(to (plist-get plist :to)))
+    (when (and (eq type 'todo-state-change)
+	       (member to the/waiting-keywords))
+      (org-schedule 'remove))))
+
+
 
 (provide 'org-functions)
 ;;; org-functions.el ends here

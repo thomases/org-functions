@@ -1,6 +1,6 @@
 ;;; org-functions.el --- 
 
-;; Copyright (C) 2015  Thomas Espe
+;; Copyright (C) 2015, 2016  Thomas Espe
 
 ;; Author: Thomas Espe <thomas.espe@gmail.com>
 ;; Keywords: 
@@ -87,6 +87,13 @@
     (when (and (eq type 'todo-state-change)
 	       (member to the/waiting-keywords))
       (org-schedule 'remove))))
+
+(defun the/org-time-between-p (ot tmin tmax)
+  "Determine if ot is between tmin and tmax (inclusive)"
+  (interactive)
+  (when (and (org-time>= (org-read-date nil nil ot) (org-read-date nil nil tmin))
+	     (org-time<= (org-read-date nil nil ot) (org-read-date nil nil tmax)))
+      t))
 
 
 
